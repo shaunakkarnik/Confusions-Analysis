@@ -1,0 +1,169 @@
+Device: cuda
+
+=== Hyperparameters ===
+input_features: 21
+num_coords: 3
+max_frames: 400
+batch_size: 64
+epochs: 100
+lr: 0.0005
+weight_decay: 0.001
+patience: 6
+lr_scheduler_patience: 3
+cooldown: 0
+min_delta: 0.01
+device: cuda
+[DEBUG] Model and optimizer setup complete. About to start training loop.
+
+=== Config: 200 train signs | 200 test signs | Seed: 46 | Size: 20000 ===
+
+Normalization Stats done
+Train Set done
+Val Set done
+Test Set done
+Test Subset Set done
+Train Loader done
+Val Loader done
+Test Loader done
+Test Subset Loader done
+[Seed 46] Train Set Size: 20000
+[Seed 46] Val Set Size: 16512, Test Set Size: 15413
+Applied Xavier weight initialization
+Total number of parameters: 2227600
+Model compiled with torch.compile
+
+=== Model Architecture ===
+OptimizedModule(
+  (_orig_mod): TransformerClassifier(
+    (embedding): Linear(in_features=63, out_features=256, bias=True)
+    (pos_encoder): PositionalEncoding(
+      (dropout): Dropout(p=0.05, inplace=False)
+    )
+    (encoder): TransformerEncoder(
+      (layers): ModuleList(
+        (0-3): 4 x TransformerEncoderLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (linear1): Linear(in_features=256, out_features=512, bias=True)
+          (dropout): Dropout(p=0.3, inplace=False)
+          (linear2): Linear(in_features=512, out_features=256, bias=True)
+          (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (dropout1): Dropout(p=0.3, inplace=False)
+          (dropout2): Dropout(p=0.3, inplace=False)
+        )
+      )
+    )
+    (pooling): AdaptiveAvgPool1d(output_size=1)
+    (final_dropout): Dropout(p=0.2, inplace=False)
+    (fc_train): Linear(in_features=256, out_features=200, bias=True)
+    (fc_test): Linear(in_features=256, out_features=200, bias=True)
+  )
+)
+/home/tdahake3/miniconda3/envs/fs_dl2/lib/python3.10/site-packages/torch/optim/lr_scheduler.py:60: UserWarning: The verbose parameter is deprecated. Please use get_last_lr() to access the learning rate.
+  warnings.warn(
+scheduler initialized
+Epoch 00 | LR: 5.00e-04 | Train Loss: 5.4431% | Train Acc: 0.48% | Val Loss: 5.9824% | Val Acc: 0.58% | Val Acc (Test Head Only): 0.48%
+Epoch 01 | LR: 5.00e-04 | Train Loss: 5.1699% | Train Acc: 1.22% | Val Loss: 5.0386% | Val Acc: 2.54% | Val Acc (Test Head Only): 2.48%
+Epoch 02 | LR: 5.00e-04 | Train Loss: 4.8110% | Train Acc: 2.31% | Val Loss: 4.4793% | Val Acc: 4.84% | Val Acc (Test Head Only): 4.98%
+Epoch 03 | LR: 5.00e-04 | Train Loss: 4.6053% | Train Acc: 3.29% | Val Loss: 4.4842% | Val Acc: 4.15% | Val Acc (Test Head Only): 4.36%
+Epoch 04 | LR: 5.00e-04 | Train Loss: 4.3651% | Train Acc: 5.00% | Val Loss: 3.9917% | Val Acc: 8.42% | Val Acc (Test Head Only): 8.33%
+Epoch 05 | LR: 5.00e-04 | Train Loss: 4.0171% | Train Acc: 7.75% | Val Loss: 3.5126% | Val Acc: 12.66% | Val Acc (Test Head Only): 12.69%
+Epoch 06 | LR: 5.00e-04 | Train Loss: 3.7656% | Train Acc: 10.53% | Val Loss: 3.2389% | Val Acc: 17.77% | Val Acc (Test Head Only): 16.31%
+Epoch 07 | LR: 5.00e-04 | Train Loss: 3.5086% | Train Acc: 14.48% | Val Loss: 2.9981% | Val Acc: 23.09% | Val Acc (Test Head Only): 23.38%
+Epoch 08 | LR: 5.00e-04 | Train Loss: 3.2304% | Train Acc: 19.62% | Val Loss: 2.6458% | Val Acc: 30.25% | Val Acc (Test Head Only): 30.15%
+Epoch 09 | LR: 5.00e-04 | Train Loss: 3.0170% | Train Acc: 24.13% | Val Loss: 2.4629% | Val Acc: 34.53% | Val Acc (Test Head Only): 34.85%
+Epoch 10 | LR: 5.00e-04 | Train Loss: 2.8388% | Train Acc: 28.11% | Val Loss: 2.3960% | Val Acc: 36.22% | Val Acc (Test Head Only): 36.28%
+Epoch 11 | LR: 5.00e-04 | Train Loss: 2.6850% | Train Acc: 30.75% | Val Loss: 2.1675% | Val Acc: 41.38% | Val Acc (Test Head Only): 41.81%
+Epoch 12 | LR: 5.00e-04 | Train Loss: 2.5228% | Train Acc: 34.66% | Val Loss: 2.0086% | Val Acc: 46.37% | Val Acc (Test Head Only): 46.60%
+Epoch 13 | LR: 5.00e-04 | Train Loss: 2.3874% | Train Acc: 37.63% | Val Loss: 1.9648% | Val Acc: 47.01% | Val Acc (Test Head Only): 47.74%
+Epoch 14 | LR: 5.00e-04 | Train Loss: 2.2855% | Train Acc: 39.91% | Val Loss: 1.9115% | Val Acc: 48.63% | Val Acc (Test Head Only): 48.59%
+Epoch 15 | LR: 5.00e-04 | Train Loss: 2.1660% | Train Acc: 42.65% | Val Loss: 1.8881% | Val Acc: 48.59% | Val Acc (Test Head Only): 49.01%
+Epoch 16 | LR: 5.00e-04 | Train Loss: 2.0843% | Train Acc: 44.57% | Val Loss: 1.6411% | Val Acc: 54.62% | Val Acc (Test Head Only): 54.93%
+Epoch 17 | LR: 5.00e-04 | Train Loss: 1.9836% | Train Acc: 47.09% | Val Loss: 1.5756% | Val Acc: 55.86% | Val Acc (Test Head Only): 56.13%
+Epoch 18 | LR: 5.00e-04 | Train Loss: 1.9194% | Train Acc: 48.53% | Val Loss: 1.4747% | Val Acc: 58.33% | Val Acc (Test Head Only): 58.30%
+Epoch 19 | LR: 5.00e-04 | Train Loss: 1.8555% | Train Acc: 50.29% | Val Loss: 1.5372% | Val Acc: 57.62% | Val Acc (Test Head Only): 57.52%
+Epoch 20 | LR: 5.00e-04 | Train Loss: 1.7945% | Train Acc: 51.48% | Val Loss: 1.4323% | Val Acc: 60.42% | Val Acc (Test Head Only): 60.53%
+Epoch 21 | LR: 5.00e-04 | Train Loss: 1.7326% | Train Acc: 53.72% | Val Loss: 1.3703% | Val Acc: 61.51% | Val Acc (Test Head Only): 61.63%
+Epoch 22 | LR: 5.00e-04 | Train Loss: 1.6808% | Train Acc: 54.52% | Val Loss: 1.3176% | Val Acc: 63.51% | Val Acc (Test Head Only): 63.26%
+Epoch 23 | LR: 5.00e-04 | Train Loss: 1.6546% | Train Acc: 55.31% | Val Loss: 1.2380% | Val Acc: 65.10% | Val Acc (Test Head Only): 65.34%
+Epoch 24 | LR: 5.00e-04 | Train Loss: 1.6045% | Train Acc: 56.60% | Val Loss: 1.3513% | Val Acc: 62.31% | Val Acc (Test Head Only): 62.42%
+Epoch 25 | LR: 5.00e-04 | Train Loss: 1.5521% | Train Acc: 57.47% | Val Loss: 1.2877% | Val Acc: 63.97% | Val Acc (Test Head Only): 64.06%
+Epoch 26 | LR: 5.00e-04 | Train Loss: 1.5415% | Train Acc: 57.90% | Val Loss: 1.1927% | Val Acc: 66.39% | Val Acc (Test Head Only): 66.67%
+Epoch 27 | LR: 5.00e-04 | Train Loss: 1.5012% | Train Acc: 59.06% | Val Loss: 1.2314% | Val Acc: 65.87% | Val Acc (Test Head Only): 66.10%
+Epoch 28 | LR: 5.00e-04 | Train Loss: 1.4734% | Train Acc: 59.77% | Val Loss: 1.2226% | Val Acc: 66.41% | Val Acc (Test Head Only): 66.56%
+Epoch 29 | LR: 5.00e-04 | Train Loss: 1.4502% | Train Acc: 60.55% | Val Loss: 1.2739% | Val Acc: 64.28% | Val Acc (Test Head Only): 64.34%
+Epoch 30 | LR: 5.00e-04 | Train Loss: 1.4280% | Train Acc: 60.91% | Val Loss: 1.1435% | Val Acc: 68.01% | Val Acc (Test Head Only): 67.96%
+Epoch 31 | LR: 5.00e-04 | Train Loss: 1.4088% | Train Acc: 61.24% | Val Loss: 1.0934% | Val Acc: 69.08% | Val Acc (Test Head Only): 69.00%
+Epoch 32 | LR: 5.00e-04 | Train Loss: 1.3784% | Train Acc: 61.55% | Val Loss: 1.1531% | Val Acc: 67.99% | Val Acc (Test Head Only): 67.97%
+Epoch 33 | LR: 5.00e-04 | Train Loss: 1.3593% | Train Acc: 62.59% | Val Loss: 1.1289% | Val Acc: 67.97% | Val Acc (Test Head Only): 68.04%
+Epoch 34 | LR: 5.00e-04 | Train Loss: 1.3214% | Train Acc: 63.93% | Val Loss: 1.2504% | Val Acc: 66.30% | Val Acc (Test Head Only): 66.29%
+Epoch 35 | LR: 2.50e-04 | Train Loss: 1.3405% | Train Acc: 63.08% | Val Loss: 1.0853% | Val Acc: 69.18% | Val Acc (Test Head Only): 69.17%
+Epoch 36 | LR: 2.50e-04 | Train Loss: 1.1734% | Train Acc: 67.75% | Val Loss: 0.9529% | Val Acc: 72.95% | Val Acc (Test Head Only): 73.07%
+Epoch 37 | LR: 2.50e-04 | Train Loss: 1.1192% | Train Acc: 69.36% | Val Loss: 0.9497% | Val Acc: 72.96% | Val Acc (Test Head Only): 72.95%
+Epoch 38 | LR: 2.50e-04 | Train Loss: 1.0933% | Train Acc: 69.63% | Val Loss: 0.9387% | Val Acc: 73.47% | Val Acc (Test Head Only): 73.55%
+Epoch 39 | LR: 2.50e-04 | Train Loss: 1.0858% | Train Acc: 69.36% | Val Loss: 0.9206% | Val Acc: 73.27% | Val Acc (Test Head Only): 73.31%
+Epoch 40 | LR: 2.50e-04 | Train Loss: 1.0787% | Train Acc: 70.38% | Val Loss: 0.9228% | Val Acc: 73.87% | Val Acc (Test Head Only): 73.79%
+Epoch 41 | LR: 2.50e-04 | Train Loss: 1.0497% | Train Acc: 70.62% | Val Loss: 0.9208% | Val Acc: 73.52% | Val Acc (Test Head Only): 73.37%
+Epoch 42 | LR: 2.50e-04 | Train Loss: 1.0607% | Train Acc: 70.28% | Val Loss: 0.9276% | Val Acc: 73.86% | Val Acc (Test Head Only): 73.94%
+Epoch 43 | LR: 1.25e-04 | Train Loss: 1.0441% | Train Acc: 71.21% | Val Loss: 0.9324% | Val Acc: 73.96% | Val Acc (Test Head Only): 73.89%
+Epoch 44 | LR: 1.25e-04 | Train Loss: 0.9719% | Train Acc: 73.03% | Val Loss: 0.8375% | Val Acc: 75.96% | Val Acc (Test Head Only): 75.93%
+Epoch 45 | LR: 1.25e-04 | Train Loss: 0.9447% | Train Acc: 73.72% | Val Loss: 0.8276% | Val Acc: 76.32% | Val Acc (Test Head Only): 76.32%
+Epoch 46 | LR: 1.25e-04 | Train Loss: 0.9160% | Train Acc: 74.30% | Val Loss: 0.8847% | Val Acc: 74.58% | Val Acc (Test Head Only): 74.69%
+Epoch 47 | LR: 1.25e-04 | Train Loss: 0.9359% | Train Acc: 73.84% | Val Loss: 0.8422% | Val Acc: 76.16% | Val Acc (Test Head Only): 76.17%
+Epoch 48 | LR: 1.25e-04 | Train Loss: 0.9106% | Train Acc: 74.44% | Val Loss: 0.8369% | Val Acc: 75.81% | Val Acc (Test Head Only): 75.87%
+Epoch 49 | LR: 6.25e-05 | Train Loss: 0.9126% | Train Acc: 74.17% | Val Loss: 0.8454% | Val Acc: 76.26% | Val Acc (Test Head Only): 76.24%
+Epoch 50 | LR: 6.25e-05 | Train Loss: 0.8636% | Train Acc: 75.75% | Val Loss: 0.7940% | Val Acc: 77.47% | Val Acc (Test Head Only): 77.50%
+Epoch 51 | LR: 6.25e-05 | Train Loss: 0.8626% | Train Acc: 75.91% | Val Loss: 0.7625% | Val Acc: 78.23% | Val Acc (Test Head Only): 78.26%
+Epoch 52 | LR: 6.25e-05 | Train Loss: 0.8473% | Train Acc: 76.25% | Val Loss: 0.7848% | Val Acc: 77.43% | Val Acc (Test Head Only): 77.42%
+Epoch 53 | LR: 6.25e-05 | Train Loss: 0.8448% | Train Acc: 76.50% | Val Loss: 0.7620% | Val Acc: 78.04% | Val Acc (Test Head Only): 78.08%
+Epoch 54 | LR: 6.25e-05 | Train Loss: 0.8396% | Train Acc: 76.53% | Val Loss: 0.7733% | Val Acc: 77.80% | Val Acc (Test Head Only): 77.82%
+Epoch 55 | LR: 3.13e-05 | Train Loss: 0.8466% | Train Acc: 76.14% | Val Loss: 0.7851% | Val Acc: 77.83% | Val Acc (Test Head Only): 77.73%
+Epoch 56 | LR: 3.13e-05 | Train Loss: 0.8211% | Train Acc: 77.12% | Val Loss: 0.7692% | Val Acc: 77.97% | Val Acc (Test Head Only): 77.97%
+Epoch 57 | LR: 3.13e-05 | Train Loss: 0.8122% | Train Acc: 77.58% | Val Loss: 0.7580% | Val Acc: 78.24% | Val Acc (Test Head Only): 78.26%
+→ Early stopping triggered after 6 epochs without improvement.
+[Seed 46] Test Accuracy on Target Sign Subset (fc_test, test subset): 76.3382%
+[Seed 46] Best Val Test Head Acc: 78.2582
+[OK] Wrote sparse confusion parquet → logs_0.001_reg_64_batch_size_0.0005_lr_init_he_masked_final_v1/size_20000/test_200/train_200/seed_46/cm_size20000_train200_test200_seed46_fc-train.parquet with 1858 rows
+[OK] Wrote sparse confusion parquet → logs_0.001_reg_64_batch_size_0.0005_lr_init_he_masked_final_v1/size_20000/test_200/train_200/seed_46/cm_size20000_train200_test200_seed46_fc-test-subset.parquet with 1867 rows
+[Seed 46] Test Accuracy on all Signs Trained (fc_train, all test): 76.4549%
+[Seed 46] Best Val Train Head Acc: 78.2340
+[Seed 46] Best Train Accuracy: 75.9050
+
+
+=== Training Summary ===
+train_acc: [0.48, 1.22, 2.305, 3.29, 4.995, 7.755, 10.525, 14.485, 19.62, 24.13, 28.115, 30.755, 34.665, 37.635, 39.905, 42.65, 44.57, 47.09, 48.53, 50.29, 51.485, 53.72, 54.52, 55.31, 56.6, 57.47, 57.9, 59.065, 59.765, 60.545, 60.905, 61.24, 61.55, 62.595, 63.93, 63.075, 67.755, 69.36, 69.63, 69.36, 70.375, 70.625, 70.285, 71.21, 73.03, 73.72, 74.3, 73.84, 74.44, 74.17, 75.75, 75.905, 76.245, 76.5, 76.53, 76.135, 77.125, 77.575]
+
+val_acc: [0.5753391472868217, 2.5436046511627906, 4.83890503875969, 4.148498062015504, 8.41812015503876, 12.663517441860465, 17.76889534883721, 23.092296511627907, 30.250726744186046, 34.52640503875969, 36.222141472868216, 41.37596899224806, 46.37233527131783, 47.01429263565891, 48.625242248062015, 48.58890503875969, 54.62088178294574, 55.8624031007752, 58.32727713178294, 57.624757751937985, 60.416666666666664, 61.51283914728682, 63.50532945736434, 65.09811046511628, 62.312257751937985, 63.971656976744185, 66.38808139534883, 65.8672480620155, 66.40625, 64.28052325581395, 68.00508720930233, 69.08309108527132, 67.98691860465117, 67.9748062015504, 66.30329457364341, 69.17999031007751, 72.94694767441861, 72.95906007751938, 73.46778100775194, 73.27398255813954, 73.86749031007751, 73.52228682170542, 73.85537790697674, 73.96438953488372, 75.95687984496124, 76.3202519379845, 74.57606589147287, 76.16279069767442, 75.81153100775194, 76.25968992248062, 77.47093023255815, 78.23401162790698, 77.42853682170542, 78.04021317829458, 77.79796511627907, 77.83430232558139, 77.97359496124031, 78.24006782945736]
+
+val_testhead_acc: [0.4844961240310077, 2.476986434108527, 4.984253875968992, 4.3604651162790695, 8.327277131782946, 12.693798449612403, 16.3093507751938, 23.382994186046513, 30.153827519379846, 34.85343992248062, 36.27664728682171, 41.81201550387597, 46.59641472868217, 47.74103682170543, 48.59496124031008, 49.01283914728682, 54.929748062015506, 56.12887596899225, 58.29699612403101, 57.5218023255814, 60.525678294573645, 61.63396317829457, 63.25702519379845, 65.34035852713178, 62.42126937984496, 64.0625, 66.67272286821705, 66.09738372093024, 66.56371124031008, 64.34108527131782, 67.9626937984496, 69.00436046511628, 67.96875, 68.04142441860465, 66.29118217054264, 69.16787790697674, 73.06807170542636, 72.94694767441861, 73.54651162790698, 73.31031976744185, 73.79481589147287, 73.37088178294573, 73.94016472868218, 73.89171511627907, 75.9265988372093, 76.3202519379845, 74.68507751937985, 76.1749031007752, 75.87209302325581, 76.24152131782945, 77.50121124031008, 78.25823643410853, 77.42248062015504, 78.0765503875969, 77.81613372093024, 77.7313468992248, 77.96753875968992, 78.25823643410853]
+
+val_loss: [5.9823897014292635, 5.038606747176296, 4.479342379311259, 4.484198873357255, 3.991748425387597, 3.5126215912574947, 3.2388857760170633, 2.998091512872267, 2.6458277000013246, 2.4629308567490686, 2.3959554110386576, 2.1674742800320765, 2.008627646653227, 1.9647548060084499, 1.9115434034850247, 1.888090939946877, 1.6410943944324818, 1.575565329355787, 1.4746783186298933, 1.5372346824453782, 1.4322697106719942, 1.3702947474265283, 1.317632909199988, 1.2380208185938901, 1.3513387305329936, 1.2876795574214108, 1.1927412115326224, 1.2313944186813148, 1.2226465025613473, 1.2738998259684837, 1.1435378524222115, 1.0934253032355346, 1.1530928223632102, 1.1289397829262786, 1.2504293849301893, 1.085337931564612, 0.9529430994460749, 0.9497241218422734, 0.938684920238894, 0.9205819732227991, 0.9227963266677635, 0.920815010287965, 0.9276127616564432, 0.9323538265718047, 0.837459344965543, 0.8276125078284463, 0.8846866811892783, 0.8421926969705626, 0.8369404618130174, 0.8453952302766401, 0.7940366141093794, 0.7624500020760898, 0.7847876404375993, 0.7619910153538682, 0.773340047560921, 0.785092175468918, 0.7692341858795447, 0.7579835983671883]
+
+train_loss: [5.4430580078125, 5.169910009765625, 4.811012060546875, 4.605300756835938, 4.365066235351563, 4.0171375, 3.7655782958984374, 3.508595935058594, 3.2304141479492188, 3.0170420471191406, 2.838785983276367, 2.685012158203125, 2.5228214096069337, 2.387369928741455, 2.285503539276123, 2.1659925983428954, 2.084302617263794, 1.98360897026062, 1.919443306350708, 1.855469543838501, 1.794513748550415, 1.7326495281219483, 1.680770122909546, 1.6546398262023925, 1.6045268074035643, 1.5521437206268311, 1.5415364448547364, 1.5012404991149901, 1.473447699356079, 1.4502370178222657, 1.4279733146667482, 1.4088217348098755, 1.3783779861450196, 1.359309538269043, 1.32141464138031, 1.3404805854797364, 1.173410608100891, 1.11918731880188, 1.0933324703216554, 1.0857984998703003, 1.0786707550048829, 1.049706356048584, 1.060706476020813, 1.0440794431686402, 0.9718550006866455, 0.9447152898788452, 0.9159653970718383, 0.9359296452522278, 0.9105515872955322, 0.9125825366973876, 0.8636436371803283, 0.8626233209609986, 0.8472511904716492, 0.8448055576324462, 0.8395782167434692, 0.8466002946853638, 0.8211057201385498, 0.8122316310882568]
+
+val_testhead_loss: [6.019967485767927, 5.0218489299448885, 4.473748140556868, 4.504023943760599, 3.989586113035217, 3.5095214548037035, 3.265547671059305, 2.98162103993024, 2.6468329540518827, 2.465226931165355, 2.399023786071659, 2.171799989633782, 2.008960870809333, 1.9592785387076148, 1.9118873038033182, 1.8805591889130053, 1.6367274605950644, 1.5771080606667571, 1.4835106097450552, 1.5407785357430923, 1.4299551174622174, 1.3733792184859284, 1.3208639845829602, 1.237791506587997, 1.3522487807181454, 1.2852343681246736, 1.1925870850104694, 1.231681650923204, 1.2219225715759188, 1.2742897112702214, 1.1457753856052724, 1.0934305551440218, 1.1532441989858022, 1.1298512906529183, 1.252564619215884, 1.0846223419950913, 0.9535611080106838, 0.9509191349033237, 0.9388130665287491, 0.922039441937624, 0.9248335414616636, 0.9225508265717085, 0.9275151714105014, 0.9333642566388891, 0.837898215928743, 0.827565071079158, 0.884500793939413, 0.8423784164957298, 0.8365514182536177, 0.8457157126692838, 0.7943149355723876, 0.7630286774663038, 0.7848760919977528, 0.7627079658961111, 0.774325486994529, 0.7864729012398757, 0.7703372551951297, 0.7585305734429248]
+
+best_val_loss: 0.7624500020760898
+
+best_train_loss: 0.8626233209609986
+
+best_val_testhead_loss: 0.7630286774663038
+
+test_acc_fc_train: 76.4549406345293
+
+test_acc_fc_test: 76.33815610199183
+
+best_val_acc: 78.23401162790698
+
+best_train_acc: 75.905
+
+best_val_testhead_acc: 78.25823643410853
+
+best_epoch: 51
+
+=== Artifacts ===
+Seed directory: seed_46
+Confusion (train head) Parquet: seed_46/cm_size20000_train200_test200_seed46_fc-train.parquet
+Confusion (test head) Parquet: seed_46/cm_size20000_train200_test200_seed46_fc-test-subset.parquet
